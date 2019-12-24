@@ -1,7 +1,7 @@
 <project>
     <shortName>pyTivo</shortName>
     <fullName>pyTivo</fullName>
-    <version>1.6.21</version>
+    <version>1.6.22</version>
     <installerFilename>${product_shortname}-${product_version}-installer.${platform_exec_suffix}</installerFilename>
     <leftImage>resources/left.png</leftImage>
     <logoImage>resources/top.png</logoImage>

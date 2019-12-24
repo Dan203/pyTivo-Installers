@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "pyTivo"
-#define MyAppVersion "1.6.21"
+#define MyAppVersion "1.6.22"
 #define MyAppPublisher "pyTivo Desktop"
 #define MyAppURL "https://pytivodesktop.com/"
 
@@ -26,6 +26,7 @@ SetupIconFile=..\desktop\icon.ico
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin
+SignTool=signtool
 
 AppMutex=pyTivoTray_{{BF213038-4019-49C0-A0AD-9D4419852647}
 ;CloseApplications=yes
@@ -62,37 +63,37 @@ Filename: "{app}\dshow\tivomak.exe"; Parameters: "-set {code:GetTivoMAK}"; Flags
 Filename: "{app}\pyTivoTray.exe"; Parameters: "--show-desktop"; Flags: nowait postinstall runasoriginaluser; Description: "Start pyTivo Now"
 
 [Registry]
-Root: "HKLM"; Subkey: "Software\Classes\.TiVo"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording"
-Root: "HKLM"; Subkey: "Software\Classes\Media Type\Extensions\.TiVo"
-Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\DefaultIcon"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play\Command"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play\Command"; ValueType: string; ValueData: """{pf32}\Windows Media Player\wmplayer.exe"" /Play ""%L"""
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play"; ValueType: string; ValueName: "&Play"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\DefaultIcon"; ValueType: string; ValueData: "{sys}\wmploc.dll,-730"
-Root: "HKLM"; Subkey: "Software\Classes\TivoRecording"; ValueType: string; ValueData: "TiVo Recording"
-Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueData: "TivoRecording"
-Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueName: "PerceivedType"; ValueData: "video"
-Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueName: "Content Type"; ValueData: "video/mpeg"
-Root: "HKLM"; Subkey: "Software\Classes\Media Type\Extensions\.TiVo"; ValueType: string; ValueName: "Source Filter"; ValueData: "{{A65FA79B-2D2C-42BD-BAB2-D474B8F01248}"
-Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\Descriptions"; ValueType: string; ValueName: "TivoRecording"; ValueData: "TiVo Recording (*.TiVo)"
-Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\MUIDescriptions"; ValueType: string; ValueName: "TivoRecording"; ValueData: "TiVo Recording"
-Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\Types"; ValueType: string; ValueName: "TivoRecording"; ValueData: "*.TiVo"
-Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\MLS\Extensions"; ValueType: string; ValueName: "TiVo"; ValueData: "video"
-Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"; ValueType: dword; ValueName: "Runtime"; ValueData: "7"
-Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"; ValueType: dword; ValueName: "Permissions"; ValueData: "143"
-Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueData: "TivoRecording"
-Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueName: "Content Type"; ValueData: "video/mpeg"
-Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueName: "PerceivedType"; ValueData: "video"
-Root: "HKCR"; Subkey: "TivoRecording"; ValueType: string; ValueData: "TiVo Recording"
-Root: "HKCR"; Subkey: "TivoRecording\DefaultIcon"; ValueData: "{sys}\wmploc.dll,-730"
-Root: "HKCR"; Subkey: "TivoRecording\Shell\Play"; ValueType: string; ValueName: "&Play"
-Root: "HKCR"; Subkey: "TivoRecording\Shell\Play\Command"; ValueType: string; ValueData: """{pf32}\Windows Media Player\wmplayer.exe"" /Play ""%L"""
-Root: "HKCR"; Subkey: "Media Type\Extensions\.TiVo"; ValueType: string
-Root: "HKCR"; Subkey: "Media Type\Extensions\.TiVo"; ValueType: string; ValueName: "Source Filter"; ValueData: "{{A65FA79B-2D2C-42BD-BAB2-D474B8F01248}"
+Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\Media Type\Extensions\.TiVo"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\DefaultIcon"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play\Command"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play\Command"; ValueType: string; ValueData: """{pf32}\Windows Media Player\wmplayer.exe"" /Play ""%L"""; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\Shell\Play"; ValueType: string; ValueName: "&Play"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording\DefaultIcon"; ValueType: string; ValueData: "{sys}\wmploc.dll,-730"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\TivoRecording"; ValueType: string; ValueData: "TiVo Recording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueData: "TivoRecording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueName: "PerceivedType"; ValueData: "video"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\.TiVo"; ValueType: string; ValueName: "Content Type"; ValueData: "video/mpeg"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Classes\Media Type\Extensions\.TiVo"; ValueType: string; ValueName: "Source Filter"; ValueData: "{{A65FA79B-2D2C-42BD-BAB2-D474B8F01248}"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\Descriptions"; ValueType: string; ValueName: "TivoRecording"; ValueData: "TiVo Recording (*.TiVo)"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\MUIDescriptions"; ValueType: string; ValueName: "TivoRecording"; ValueData: "TiVo Recording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\Player\Extensions\Types"; ValueType: string; ValueName: "TivoRecording"; ValueData: "*.TiVo"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\MediaPlayer\MLS\Extensions"; ValueType: string; ValueName: "TiVo"; ValueData: "video"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"; ValueType: dword; ValueName: "Runtime"; ValueData: "7"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKLM"; Subkey: "Software\Microsoft\Multimedia\WMPlayer\Extensions\.TiVo"; ValueType: dword; ValueName: "Permissions"; ValueData: "143"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueData: "TivoRecording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueName: "Content Type"; ValueData: "video/mpeg"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: ".TiVo"; ValueType: string; ValueName: "PerceivedType"; ValueData: "video"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "TivoRecording"; ValueType: string; ValueData: "TiVo Recording"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "TivoRecording\DefaultIcon"; ValueData: "{sys}\wmploc.dll,-730"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "TivoRecording\Shell\Play"; ValueType: string; ValueName: "&Play"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "TivoRecording\Shell\Play\Command"; ValueType: string; ValueData: """{pf32}\Windows Media Player\wmplayer.exe"" /Play ""%L"""; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "Media Type\Extensions\.TiVo"; ValueType: string; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
+Root: "HKCR"; Subkey: "Media Type\Extensions\.TiVo"; ValueType: string; ValueName: "Source Filter"; ValueData: "{{A65FA79B-2D2C-42BD-BAB2-D474B8F01248}"; Flags: createvalueifdoesntexist; Tasks: InstallDSFilter
 
 [Tasks]
 Name: "StartWithWindows"; Description: "Start automatically when Windows starts"
