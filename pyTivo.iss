@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "pyTivo"
-#define MyAppVersion "1.6.22"
+#define MyAppVersion "1.6.24"
 #define MyAppPublisher "pyTivo Desktop"
 #define MyAppURL "https://pytivodesktop.com/"
 
